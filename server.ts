@@ -2,7 +2,7 @@ import { Innertube, Log } from 'npm:youtubei.js@latest'
 
 Log.setLevel(Log.Level.WARNING);
 const yt = await Innertube.create({});
-const allData: Record<string, VideoData> = {};
+const allData: Record<string, object> = {};
 async function getTranscript(videoID: string) {
 
   const scriptInfo = await (await yt.getInfo(videoID)).getTranscript()
