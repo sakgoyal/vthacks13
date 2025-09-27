@@ -295,3 +295,5 @@ async function getGeminiAnalysis() {
     .then((result) => result["candidates"][0]["content"]["parts"][0]["text"]);
     return res;
 }
+
+await getGeminiAnalysis();
