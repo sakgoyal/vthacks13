@@ -1,10 +1,12 @@
+/// <reference lib="dom" />
+// deno-lint-ignore-file no-window
 function getYouTubeVideoId(url) {
   const match = url.match(/[?&]v=([^&]+)/) || url.match(/youtu\.be\/([^?&]+)/);
   return match ? match[1] : null;
 }
+const href = window.location.href;
+const currentVideoId = getYouTubeVideoId(href);
 
-// deno-lint-ignore no-window
-const currentVideoId = getYouTubeVideoId(window.location.href);
 if (currentVideoId) {
   setDialog(currentVideoId);
 }

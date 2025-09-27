@@ -11,6 +11,6 @@
   }],
   "background": { "service_worker": "background.js" },
   "host_permissions": ["<all_urls>"],
-  "permissions": ["scripting", "activeTab", "declarativeNetRequest", "webRequest"],
+  "permissions": ["scripting", "activeTab", "declarativeNetRequest", "webRequest", "storage"],
   "$schema": "https://json.schemastore.org/chrome-manifest"
 }
