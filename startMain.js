@@ -244,7 +244,7 @@ async function getGeminiAnalysis() {
             "contents": [{
                 "parts":[
                     {"text": "Here is some data about a person's habits and lifestyle:\n"},
-                    {"inlineData": {mimeType: 'application/json', data: JSON.stringify(window.data)} },
+                    {"inlineData": {mimeType: 'application/json', data: btoa(JSON.stringify(window.data))} },
                     {"text": "Please analyze the data and provide insights on how these habits might be affecting their overall well-being. Offer suggestions for improvement where applicable."},
                     {"text": "sleepQuality is an array of objects with day (0-indexed) and score (1-5) representing sleep quality over time.\n"},
                     {"text": "dayQuality is representing overall mood and well-being over time.\n"},
