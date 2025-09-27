@@ -113,4 +113,20 @@ window.data = {
 	unhealthyFood: [],
 	doomScrolling: [],
 	drankCaffeine: [],
+	YTdata: await fetch("https://vthacks13.saksham.dev/getAllData")
+  .then(res => res.json())
+  .then(data => {
+	console.log("Fetched YT data:", data);
+    for (const key in data) {
+      if (data[key].analysis) {
+        try {
+          data[key].analysis = JSON.parse(data[key].analysis);
+        } catch {
+          data[key].analysis = {};
+        }
+      }
+    }
+    return data;
+  })
+  .catch(() => ({})),
 };
