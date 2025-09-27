@@ -272,7 +272,8 @@ updateChart();
 async function getGeminiAnalysis() {
     const GEMINI_API_KEY = "AIzaSyC9FTM5HdsZcpUKn1G_lAhKGRNU7lM4_1s";
     const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
-
+    console.warn("--- fetching gemini analysis ---");
+    console.warn(window.data);
     const res = await fetch(GEMINI_API_URL, {method: "POST",headers: {"Content-Type": "application/json","x-goog-api-key": GEMINI_API_KEY},
         body: JSON.stringify({
             "contents": [{
@@ -293,6 +294,7 @@ async function getGeminiAnalysis() {
     })
     .then((response) => response.json())
     .then((result) => result["candidates"][0]["content"]["parts"][0]["text"]);
+    console.warn("--- fetched gemini analysis ---");
     return res;
 }
 
