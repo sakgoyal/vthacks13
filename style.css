@@ -32,9 +32,9 @@ body {
 #graphContainer {
     position: absolute;
     width: 50vw;
-    height: 40vh;
+    height: 62vh;
     left: 44vw;
-    top: 28vh;
+    top: 32vh;
 }
 
 #dateLeft {
@@ -93,4 +93,21 @@ body {
     color: #fff;
     border-radius: 8px;
     border: 2px solid #5590ff;
+}
+
+#avgMood, #avgSleep, #avgUnhealthyHabits {
+    font-family: "Comfortaa";
+    font-size: 35px;
+    position: absolute;
+    top: 10vh;
+}
+
+#avgMood {
+    left: 65.75vw;
+}
+#avgSleep {
+    left: 75.5vw;
+}
+#avgUnhealthyHabits {
+    left: 87vw;
 }

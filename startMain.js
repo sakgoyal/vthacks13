@@ -39,7 +39,7 @@ for (let i = 0; i < 270; i++) {
     const unhealthyFoodCount = getRandom(0, Math.round(Math.sin(Math.PI * i / 365) * 5));
     data.unhealthyFood.push({ day: i, score: unhealthyFoodCount });
 
-    const dayQuality = getRandom(1, 5) - getRandom(0, unhealthyFoodCount + 1);
+    const dayQuality = Math.max(0, getRandom(1, 5) - getRandom(0, unhealthyFoodCount + 1));
     data.dayQuality.push({
         day: i,
         score: dayQuality,
@@ -89,7 +89,7 @@ window.updateChart = function () {
                 }
 
                 const monthAverage = sum / 30;
-                newData[dataName].push({ day: i, score: monthAverage })
+                newData[dataName].push({ day: i, score: monthAverage });
             }
         }
 
@@ -118,6 +118,51 @@ window.updateChart = function () {
             }
         }
     }
+
+    let sum1 = 0;
+    for (const dataPoint of filteredData.dayQuality) {
+        sum1 += dataPoint.score;
+    }
+    let num1 = 0;
+    const int1 = setInterval(() => {
+        num1 += sum1 / 50;
+        avgMood.innerText = Math.round(num1 / filteredData.dayQuality.length * 10) / 10;
+    }, 10);
+    setTimeout(() => {
+        clearInterval(int1);
+        avgMood.innerText = Math.round(sum1 / filteredData.dayQuality.length * 10) / 10;
+    }, 500);
+    let sum2 = 0;
+    for (const dataPoint of filteredData.sleepQuality) {
+        sum2 += dataPoint.score;
+    }
+    let num2 = 0;
+    const int2 = setInterval(() => {
+        num2 += sum2 / 75;
+        avgSleep.innerText = Math.round(num2 / filteredData.sleepQuality.length * 10) / 10;
+    }, 10);
+    setTimeout(() => {
+        clearInterval(int2);
+        avgSleep.innerText = Math.round(sum2 / filteredData.sleepQuality.length * 10) / 10;
+    }, 750);
+    let sum3 = 0;
+    let length = 0;
+    for (const name of ["unhealthyFood", "doomScrolling", "drankCaffeine"]) {
+        for (const stat of filteredData[name]) {
+            sum3 += stat.score;
+        }
+        length += filteredData[name].length;
+    }
+    let num3 = 0;
+    const int3 = setInterval(() => {
+        num3 += sum3 / 100;
+        avgUnhealthyHabits.innerText = Math.round(num3 / length * 10) / 10;
+    }, 10);
+    setTimeout(() => {
+        clearInterval(int3);
+        avgUnhealthyHabits.innerText = Math.round(sum3 / length * 10) / 10;
+    }, 1000);
+
 
     const timeAxis = [
         ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
