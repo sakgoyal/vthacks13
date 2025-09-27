@@ -1,5 +1,8 @@
 {
   "imports": {
     "youtubei.js": "npm:youtubei.js@^15.1.1"
+  },
+  "fmt": {
+    "lineWidth": 320
   }
 }

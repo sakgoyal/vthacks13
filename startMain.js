@@ -239,12 +239,12 @@ async function getGeminiAnalysis() {
     const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
     console.warn("--- fetching gemini analysis ---");
     console.warn(window.data);
-    const res = await fetch(GEMINI_API_URL, {method: "POST",headers: {"Content-Type": "application/json","x-goog-api-key": GEMINI_API_KEY},
+    const res = await fetch(GEMINI_API_URL, {method: "POST", headers: {"Content-Type": "application/json","x-goog-api-key": GEMINI_API_KEY},
         body: JSON.stringify({
             "contents": [{
                 "parts":[
                     {"text": "Here is some data about a person's habits and lifestyle:\n"},
-                    {"text": window.data },
+                    {"text": JSON.stringify(window.data) },
                     {"text": "Please analyze the data and provide insights on how these habits might be affecting their overall well-being. Offer suggestions for improvement where applicable."},
                     {"text": "sleepQuality is an array of objects with day (0-indexed) and score (1-5) representing sleep quality over time.\n"},
                     {"text": "dayQuality is representing overall mood and well-being over time.\n"},
