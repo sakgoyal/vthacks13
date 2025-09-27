@@ -167,5 +167,7 @@ for (let i = 0; i < 270; i++) {
 const dataIds = {
 	sleepQuality: 0,
 	dayQuality: 1,
-	
+	unhealthyFood: 2,
+	doomScrolling: 3,
+	drankCaffeine: 4,
 };

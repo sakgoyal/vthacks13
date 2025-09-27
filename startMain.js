@@ -155,7 +155,6 @@ window.updateChart = function () {
                         ticks: {
                             stepSize: 1,
                             callback: function (value) {
-                                console.log(value)
                                 return timeAxis[value];
                             }
                         },
