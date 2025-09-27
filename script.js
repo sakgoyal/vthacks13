@@ -130,3 +130,42 @@ window.data = {
   })
   .catch(() => ({})),
 };
+
+// TODOOOO this is example data
+// starts at January 1, 2025 12:00:00 AM
+
+function getRandom(min, maxExcluded) {
+    const r = Math.random();
+    return Math.floor(r * maxExcluded) + min;
+}
+
+// fill test data for 270 days
+for (let i = 0; i < 270; i++) {
+    data.sleepQuality.push({
+        day: i,
+        score: getRandom(0, 2) + ((i + 4) % 7 < 2 ? 3 : 0),
+    });
+
+    const unhealthyFoodCount = getRandom(0, Math.round(Math.sin(Math.PI * i / 365) * 5));
+    data.unhealthyFood.push({ day: i, score: unhealthyFoodCount });
+
+    const dayQuality = Math.max(0, getRandom(1, 5) - getRandom(0, unhealthyFoodCount + 1));
+    data.dayQuality.push({
+        day: i,
+        score: dayQuality,
+    });
+
+
+    const doomScrollingCount = Math.max(getRandom(2, 3) - getRandom(0, dayQuality), 0);
+    data.doomScrolling.push({ day: i, score: doomScrollingCount });
+
+    const drankCaffeineCount = getRandom(0, 2);
+    data.drankCaffeine.push({ day: i, score: drankCaffeineCount });
+}
+
+// format data for MCU
+const dataIds = {
+	sleepQuality: 0,
+	dayQuality: 1,
+	
+};
