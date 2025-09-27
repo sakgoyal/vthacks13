@@ -268,3 +268,30 @@ window.updateChart = function () {
 };
 
 updateChart();
+
+async function getGeminiAnalysis() {
+    const GEMINI_API_KEY = "AIzaSyC9FTM5HdsZcpUKn1G_lAhKGRNU7lM4_1s";
+    const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
+
+    const res = await fetch(GEMINI_API_URL, {method: "POST",headers: {"Content-Type": "application/json","x-goog-api-key": GEMINI_API_KEY},
+        body: JSON.stringify({
+            "contents": [{
+                "parts":[
+                    {"text": "Here is some data about a person's habits and lifestyle:\n"},
+                    {"text": window.data },
+                    {"text": "Please analyze the data and provide insights on how these habits might be affecting their overall well-being. Offer suggestions for improvement where applicable."},
+                    {"text": "sleepQuality is an array of objects with day (0-indexed) and score (1-5) representing sleep quality over time.\n"},
+                    {"text": "dayQuality is representing overall mood and well-being over time.\n"},
+                    {"text": "unhealthyFood is an array of objects with day (0-indexed) and score (count) representing the number of unhealthy food items consumed over time.\n"},
+                    {"text": "doomScrolling is representing the amount of time spent doomscrolling over time.\n"},
+                    {"text": "drankCaffeine is representing the number of caffeinated drinks consumed over time.\n"},
+                    {"text": "YTdata is an object where each key is a ISO date string and each value is an object containing details about a YouTube video the user attempted to watch\n"},
+                    {"text": "Analyze correlations between these habits and provide actionable insights. Suggest lifestyle changes to improve overall well-being."},
+                ]
+            }],
+        }),
+    })
+    .then((response) => response.json())
+    .then((result) => result["candidates"][0]["content"]["parts"][0]["text"]);
+    return res;
+}
