@@ -296,4 +296,4 @@ async function getGeminiAnalysis() {
     return res;
 }
 
-await getGeminiAnalysis();
+console.log(await getGeminiAnalysis());
