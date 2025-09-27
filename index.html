@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Funnel+Display:wght@300..800&family=Funnel+Sans:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+
+	<title>Productivity PDA</title>
+
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="spinner.css" />
+</head>
+
+<body>
+	<div id="spinner" class="triple-spinner"></div>
+
+	<button id="connectDevice" class="startContent">Connect</button>
+
+	<p id="dateText" class="mainContent">Week</p>
+	<div id="graphContainer">
+	<canvas id="mainGraph" class="mainContent" width="200" height="275"></canvas>
+	</div>
+	<div id="dateLeftContainer" class="mainContent">
+	<img src="arrow-left.svg" id="dateLeft" />
+	</div>
+	<div id="dateRightContainer" class="mainContent">
+	<img src="arrow-left.svg" id="dateRight" />
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.js" integrity="sha512-D4pL3vNgjkHR/qq+nZywuS6Hg1gwR+UzrdBW6Yg8l26revKyQHMgPq9CLJ2+HHalepS+NuGw1ayCCsGXu9JCXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+	<script src="script.js" type="module"></script>
+</body>
+
+</html>
