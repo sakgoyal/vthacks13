@@ -111,3 +111,11 @@ body {
 #avgUnhealthyHabits {
     left: 87vw;
 }
+
+.scrollbox {
+  --rad: radial-gradient(50% 14px, rgba(0, 0, 0, .2), transparent);
+  background:
+    linear-gradient(rgb(250,252,254) 12px, transparent 40px calc(100% - 40px),rgb(250,252,254) calc(100% - 12px)) local,
+    var(--rad) top   /100% 200%,
+    var(--rad) bottom/100% 200%;
+}

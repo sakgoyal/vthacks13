@@ -259,6 +259,7 @@ async function getGeminiAnalysis() {
                     {"text": "\nAnalyze correlations between these habits and provide actionable insights. Suggest lifestyle changes to improve overall well-being."},
                     {"text": "\nDo not add a preamble or conclusion. Just give the analysis. the report should not be longer than 3-4 sentences for each section."},
                     {"text": "\nKeep the response simple and easy to understand. Should not be too technical or too formal. Use a friendly and approachable tone."},
+                    {"text": "\nUse markdown formatting for the response. Be confident. do not mention scores specifically. for example. do not say 'a score of 4' or things like 'scores below 4' but rather 'good', 'bad','could be improved', 'trending up/down'."},
                 ]
             }],
         }),
