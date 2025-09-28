@@ -24,7 +24,7 @@ Deno.serve({ port: 8000 }, async (req: Request) => {
   const transcript = await getTranscript(url);
 
   const GEMINI_API_KEY = "AIzaSyC9FTM5HdsZcpUKn1G_lAhKGRNU7lM4_1s";
-  const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
+  const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
   const res: string = await fetch(GEMINI_API_URL, {
     method: "POST",
@@ -37,7 +37,7 @@ Deno.serve({ port: 8000 }, async (req: Request) => {
               "Below is the transcript for a youtube video. What kind of video is this? think about if this video is educational, entertaining, technical, feel good, gaming, video essays, excessively long videos, other categories that are common on youtube. Is this video actually worth watching, worth the time, worth the mental health effects. then end with a simple score of 0-100 of worth watching or not. make sure to ignore any ads or promotional content and only focus on the actual content of the video.",
           },
           { "text": transcript },
-          { "text": "Output formatting notes:make sure the scale is just the number. no additional text describing the score or anything. no need to mention the scale. just the plain number and nothing else" },
+          { "text": "Output formatting notes:make sure the scale is just the number. no additional text describing the score or anything. no need to mention the scale. just the plain number and nothing else. the scales should be 0 to 100 for all categories. but for mental health effects, use the range -50 to 50. " },
         ],
       }],
       "generationConfig": {

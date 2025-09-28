@@ -13,35 +13,15 @@ if (currentVideoId) {
 
 function renderDialog(apiResponse) {
   const parsed = JSON.parse(apiResponse);
-
-  const ranges = {
-    "Worth Watching": [
-      { min: 0, max: 30, msg: "Not really worth watching." }
-    ],
-    "Worth Time": [
-      { min: 0, max: 30, msg: "This video is likely a waste of your time." },
-      { min: 31, max: 60, msg: "This video might be okay, but probably not worth much time." }
-    ],
-    "Mental Health Effect": [
-      { min: -100, max: -30, msg: "This video might not be good for your mental health." }
-    ],
-    "Overall Score": [
-      { min: 0, max: 30, msg: "Overall: Not recommended." }
-    ]
-  };
-
-  const getMsg = (key) => {
-    const val = parseInt(parsed[key] || 0, 10);
-    return ranges[key]?.find(r => val >= r.min && val <= r.max)?.msg ?? undefined;
-  };
-
   return `
     <dialog open style="z-index: 9999;align-self: anchor-center;font-size: x-large;">
-      <h3>Hey...</h3>
-      <ul>
-        ${Object.keys(ranges).map(k => `<li>${getMsg(k) || ""}</li>`).join("")}
-      </ul>
-      <h4>You should probably avoid this video.</h4>
+      <h3>Stop the Slop</h3>
+      <ul>Worth Watching: ${parsed["Worth Watching"] || "N/A"}</ul>
+      <ul>Worth Time: ${parsed["Worth Time"] || "N/A"}</ul>
+      <ul>Mental Health Effect: ${parsed["Mental Health Effect"] || "N/A"}</ul>
+      <ul>Overall Score: ${parsed["Overall Score"] || "N/A"}</ul>
+      ${parsed['Mental Health Effect'] < 0 ? `<strong style="color: red;">This video might not be good for your mental health.</strong><br/>` : ''}
+      ${parsed['Overall Score'] < 50 ? `<strong style="color: red;">This video is likely not worth your time.</strong>` : ''}
       <button onclick="this.closest('dialog').close()">OK</button>
     </dialog>
   `;
