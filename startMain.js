@@ -257,14 +257,18 @@ async function getGeminiAnalysis() {
                     {"text": "\ndrankCaffeine is representing the number of caffeinated drinks consumed over time.\n"},
                     {"text": "\nYTdata is an object where each key is a ISO date string and each value is an object containing details about a YouTube video the user attempted to watch\n"},
                     {"text": "\nAnalyze correlations between these habits and provide actionable insights. Suggest lifestyle changes to improve overall well-being."},
+                    {"text": "\nDo not add a preamble or conclusion. Just give the analysis. the report should not be longer than 3-4 sentences for each section."},
+                    {"text": "\nKeep the response simple and easy to understand. Should not be too technical or too formal. Use a friendly and approachable tone."},
                 ]
             }],
         }),
     })
     .then((response) => response.json())
-    .then((result) => result);
+    .then((result) => result["candidates"][0]["content"]["parts"][0]["text"]);
     console.warn("--- fetched gemini analysis ---");
     return res;
 }
 
-console.log(await getGeminiAnalysis());
+const analysisContainer = document.getElementById("AIEvalText");
+const analysis = await getGeminiAnalysis();
+analysisContainer.innerHTML = marked.parse(analysis);
